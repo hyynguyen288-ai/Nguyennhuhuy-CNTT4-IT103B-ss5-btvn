@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ================== A. ĐĂNG NHẬP HỆ THỐNG ==================
+let taikhoanDung = "admin";
+let matKhauDung = "12345";
+let soLanDangNhapToiDa = 3;
+let daDangNhap = false
+
+for (let lan = 1; lan <= soLanDangNhapToiDa; lan++) {
+    let taiKhoanNhap = prompt("Nhập tài khoản:");
+    let matKhauNhap = prompt("Nhập mật khẩu:");
+
+    if (taiKhoanNhap === "admin" && matKhauNhap ==="12345") {
+        console.log("Đăng nhập thành cong");
+        daDangNhap = true;
+        break;
+    } else {
+        alert(`sai, conn ${soLanDangNhapToiDa - lan} lan`);
+    }
+
+    if (lan === soLanDangNhapToiDa) {
+        alert("Tk bi khoa");
+    }
+}
+
+if (!daDangNhap) {
+    alert("Kết thúc chương trình");
+}
+let danhSachSach = ["Toán", "Văn", "Anh"];
+let luaChon;
+
+do {
+    luaChon = prompt(`
+1. Nhập thêm lô sách mới
+2. Hiển thị danh sách sách
+3. Tìm kiếm sách
+4. Cập nhật tên sách
+5. Đảo ngược thứ tự kệ sách
+6. Nhập kho từ nguồn khác
+7. Thoát chương trình
+Nhập lựa chọn (1-7):
+    `);
+
+    switch (luaChon) {
+
+        //chucnang1
+        case "1":
+            let chuoiSachNhap = prompt("Nhập tên sách, cách nhau bằng dấu phẩy:");
+            let mangSachMoi = chuoiSachNhap
+                .split(",")
+
+            danhSachSach.push(...mangSachMoi);
+            console.log(`Da them ${mangSachMoi.length} sach vao kho`);
+            break;
+
+        // chucnanf2
+        case "2":
+            console.log("danh sach sach hien co la");
+            danhSachSach.forEach((sach, chiSo) => {
+                console.log(`${chiSo + 1}. ${sach}`);
+            });
+            break;
+
+        // chucnang3
+        case "3":
+            let tenSachCanTim = prompt("Sach can tim la:");
+            let viTriSach = danhSachSach.indexOf(tenSachCanTim);
+
+            if (viTriSach !== -1) {
+                console.log(`Sách "${tenSachCanTim}" vị trí ${viTriSach}`);
+            } else {
+                console.log("Kh thay");
+            }
+            break;
+
+        //chucnang4
+        case "4":
+            let sachCu = prompt("Ten sach can sua la");
+            let chiSoCanSua = danhSachSach.indexOf(sachCu);
+
+            if (chiSoCanSua !== -1) {
+                let tenSachMoi = prompt("Ten sach moi la:");
+                danhSachSach[chiSoCanSua] = tenSachMoi;
+                console.log("Cap nhat thanh cong");
+            } else {
+                console.log("sach kh co");
+            }
+            break;
+
+        //chucnang5
+        case "5":
+            danhSachSach.reverse();
+            console.log("Danh sách sau khi đảo ngược:");
+            danhSachSach.forEach((sach, chiSo) => {
+                console.log(`Index ${chiSo}: ${sach}`);
+            });
+            break;
+
+        // chucnang6
+        case "6":
+            let khoChiNhanhKhac = ["Sách Kỹ Năng", "Truyện Tranh"];
+            danhSachSach = danhSachSach.concat(khoChiNhanhKhac);
+            console.log("Da gop kho sach");
+            break;
+
+        case "7":
+            console.log("Bye");
+            break;
+
+        default:
+            alert("Lựa chọn không hợp lệ");
+    }
+
+} while (luaChon !== "7");
+
+    </script>
+    
+</body>
+</html>
